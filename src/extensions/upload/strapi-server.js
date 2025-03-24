@@ -7,9 +7,6 @@
  * It also creates a short URL for each uploaded file using the Short.io service.
  */
 
-// Import the createShortLink function from the shortio_script.js file
-const { createShortLink } = require('../../../scripts/shortio_script');
-
 module.exports = (plugin) => {
   console.log('🔌 Initializing custom upload plugin extension');
   
@@ -26,20 +23,6 @@ module.exports = (plugin) => {
       if (result && typeof result === 'object') {
         result.hello = 'world';
         console.log('✅ Added hello:world to file:', result.id);
-        
-        // Create a short URL for the file
-        if (result.url) {
-          console.log('📁 Detected new file upload:', result.url);
-          try {
-            const shortLinkData = await createShortLink(result.url);
-            if (shortLinkData && shortLinkData.shortURL) {
-              result.shortUrl = shortLinkData.shortURL;
-              console.log('✅ Short link created:', shortLinkData.shortURL);
-            }
-          } catch (error) {
-            console.error('❌ Error creating short link:', error);
-          }
-        }
       }
     },
     

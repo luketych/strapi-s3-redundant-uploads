@@ -31,11 +31,6 @@ module.exports = ({ env }) => {
           delete: {},
         },
       },
-    },
-
-    // ✅ Register your plugin here
-    'strapi-plugin-shortio': {
-      enabled: true,
-    },
+    }
   };
 };
