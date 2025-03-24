@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "atoms",
+  "info": {
+    "singularName": "atom",
+    "pluralName": "atoms",
+    "displayName": "Atom"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "atomId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

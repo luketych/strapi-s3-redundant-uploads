@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "molecules",
+  "info": {
+    "singularName": "molecule",
+    "pluralName": "molecules",
+    "displayName": "Molecule"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "moleculeId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
