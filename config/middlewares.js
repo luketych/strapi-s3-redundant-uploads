@@ -1,36 +1,6 @@
-// ~/strapi-aws-s3/backend/config/middlewares.js
-
-module.exports = [
+module.exports = ({env}) => [
   'strapi::errors',
-  /* Replace 'strapi::security', with this snippet */
-  /* Beginning of snippet */
-  {
-    name: 'strapi::security',
-    config: {
-      contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-          'connect-src': ["'self'", 'https:'],
-          'img-src': [
-            "'self'",
-            'data:',
-            'blob:',
-            'dl.airtable.com',
-            'luketych-strapi-aws-s3-images-bucket.s3.us-east-2.amazonaws.com'
-          ],
-          'media-src': [
-            "'self'",
-            'data:',
-            'blob:',
-            'dl.airtable.com',
-            'luketych-strapi-aws-s3-images-bucket.s3.us-east-2.amazonaws.com'
-          ],
-          upgradeInsecureRequests: null,
-        },
-      },
-    },
-  },
-  /* End of snippet */
+  'strapi::security',
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
@@ -39,4 +9,18 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https:'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https:'],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  }
 ];

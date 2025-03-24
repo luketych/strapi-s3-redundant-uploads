@@ -6,16 +6,26 @@
 
 module.exports = {
   async create(ctx) {
+    console.log('=== POST /api/molecule endpoint hit ===');
     try {
-      const { id } = ctx.request.body;
+      const { unique_key } = ctx.request.body;
+      
+      if (!unique_key) {
+        return ctx.badRequest('unique_key is required');
+      }
 
-      if (!id) {
-        return ctx.badRequest('ID is required');
+      // Check if an molecule with this ID already exists
+      const existingMolecule = await strapi.db.query('api::molecules.molecule').findOne({
+        where: { unique_key: unique_key }
+      });
+
+      if (existingMolecule) {
+        return ctx.conflict('A molecule with this ID already exists');
       }
 
       const entry = await strapi.db.query('api::molecules.molecule').create({
         data: {
-          moleculeId: id
+          unique_key: unique_key
         }
       });
 
@@ -40,11 +50,11 @@ module.exports = {
 
   async findOne(ctx) {
     try {
-      const { moleculeId } = ctx.params;
+      const { unique_key } = ctx.params;
 
       const molecule = await strapi.db.query('api::molecules.molecule').findOne({
         where: {
-          moleculeId: moleculeId
+          unique_key: unique_key
         },
         populate: true
       });
@@ -58,4 +68,5 @@ module.exports = {
       return ctx.badRequest(err.message);
     }
   }
+
 };

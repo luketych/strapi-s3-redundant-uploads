@@ -10,7 +10,7 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "moleculeId": {
+    "unique_key": {
       "type": "string",
       "required": true,
       "unique": true

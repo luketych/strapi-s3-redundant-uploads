@@ -2,32 +2,32 @@ module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/molecules',
-      handler: 'molecule.create',
+      path: '/atoms',
+      handler: 'atom.create',
       config: {
-        auth: false,
         policies: [],
         middlewares: [],
+        auth: { enabled: true },
       },
     },
     {
       method: 'GET',
-      path: '/molecules',
-      handler: 'molecule.findAll',
+      path: '/atoms',
+      handler: 'atom.findAll',
       config: {
-        auth: false,
         policies: [],
         middlewares: [],
+        auth: { enabled: true },
       },
     },
     {
       method: 'GET',
-      path: '/molecules/:moleculeId',
-      handler: 'molecule.findOne',
+      path: '/atoms/:atomId',
+      handler: 'atom.findOne',
       config: {
-        auth: false,
         policies: [],
         middlewares: [],
+        auth: { enabled: true },
       },
     },
   ],

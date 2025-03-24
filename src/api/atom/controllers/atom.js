@@ -14,6 +14,15 @@ module.exports = {
         return ctx.badRequest('ID is required');
       }
 
+      // Check if an atom with this ID already exists
+      const existingAtom = await strapi.db.query('api::atom.atom').findOne({
+        where: { atomId: id }
+      });
+
+      if (existingAtom) {
+        return ctx.conflict('An atom with this ID already exists');
+      }
+
       const entry = await strapi.db.query('api::atom.atom').create({
         data: {
           atomId: id
