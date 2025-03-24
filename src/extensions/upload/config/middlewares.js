@@ -9,10 +9,5 @@ module.exports = {
   routes: {
     prefix: '/api',
   },
-  middlewares: [
-    {
-      name: 'upload-middleware',
-      config: {},
-    },
-  ],
-}; 
+  middlewares: [],
+};
