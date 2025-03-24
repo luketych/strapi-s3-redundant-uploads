@@ -2,7 +2,7 @@ module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/atom',
+      path: '/atoms',
       handler: 'atom.create',
       config: {
         auth: false,

@@ -14,7 +14,7 @@ module.exports = {
         return ctx.badRequest('ID is required');
       }
 
-      const entry = await strapi.entityService.create('api::atom.atom', {
+      const entry = await strapi.db.query('api::atom.atom').create({
         data: {
           atomId: id
         }
@@ -29,8 +29,8 @@ module.exports = {
 
   async findAll(ctx) {
     try {
-      const atoms = await strapi.entityService.findMany('api::atom.atom', {
-        populate: '*'
+      const atoms = await strapi.db.query('api::atom.atom').findMany({
+        populate: true
       });
 
       return { data: atoms };
@@ -43,18 +43,18 @@ module.exports = {
     try {
       const { atomId } = ctx.params;
 
-      const atoms = await strapi.entityService.findMany('api::atom.atom', {
-        filters: {
+      const atom = await strapi.db.query('api::atom.atom').findOne({
+        where: {
           atomId: atomId
         },
-        populate: '*'
+        populate: true
       });
 
-      if (!atoms || atoms.length === 0) {
+      if (!atom) {
         return ctx.notFound('Atom not found');
       }
 
-      return { data: atoms[0] };
+      return { data: atom };
     } catch (err) {
       return ctx.badRequest(err.message);
     }

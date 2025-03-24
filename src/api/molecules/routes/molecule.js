@@ -2,7 +2,7 @@ module.exports = {
   routes: [
     {
       method: 'POST',
-      path: '/molecule',
+      path: '/molecules',
       handler: 'molecule.create',
       config: {
         auth: false,
